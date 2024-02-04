@@ -4,10 +4,6 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
-// router.get("/adminlogin",(req,res)=>{
-//   res.send("here am i");
-//   })
-
 router.post("/adminlogin", (req, res) => {
   const sql = "SELECT * FROM students WHERE symbol = ? and password = ?";
   conn.query(sql, [req.body.symbol, req.body.password], (err, result) => {
