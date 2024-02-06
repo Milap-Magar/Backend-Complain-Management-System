@@ -4,11 +4,11 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
-// router.get("/adminlogin",(req,res)=>{
+// router.get("/userlogin",(req,res)=>{
 //   res.send("here am i");
 // })
 
-router.post("/adminlogin", (req, res) => {
+router.post("adminlogin", (req, res) => {
   const sql = "SELECT * FROM admins WHERE admin_no = ? and password = ?";
   conn.query(sql, [req.body.admin_no, req.body.password], (err, result) => {
     console.log("🚀 ~ conn.query ~ result:", result);

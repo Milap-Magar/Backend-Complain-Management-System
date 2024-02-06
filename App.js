@@ -1,8 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-// const router = require("./Routes/AdminRoutes");
-
 const app = express();
+app.use(express.json());
 
 app.use(
   cors({
@@ -12,9 +11,11 @@ app.use(
   })
 );
 
-app.use(express.json());
-const adminRouter = require("./Routes/AdminRoutes");
-app.use("/auth", adminRouter);
+const adminRouter = require("./Routes/Admin.Routes");
+app.use("/", adminRouter);
+
+const studentRouter = require("./Routes/Students.Routes");
+app.use("/", studentRouter);
 
 const authenticateUser = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -23,6 +24,7 @@ const authenticateUser = (req, res, next) => {
     res.redirect("/auth/login");
   }
 };
+
 app.get("/auth/dashboard", authenticateUser, (req, res) => {
   res.render("dashboard");
 });
