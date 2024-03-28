@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
+
 const conn = require("./utils/database");
 const app = express();
 app.use(express.json());
@@ -17,11 +18,11 @@ const adminRouter = require("./Routes/Admin.Routes");
 app.use("/", adminRouter);
 
 const studentRouter = require("./Routes/Students.Routes");
-app.use("/", studentRouter);
+app.use("/admin", studentRouter);
 
-app.get("/register", (req, res) => {
-  res.send("HERE AM I");
-});
+// app.get("/register", (req, res) => {
+//   res.send("HERE AM I");
+// });
 
 // app.post("/register", (req, res) => {
 //   const sql =
@@ -86,4 +87,6 @@ app.get("/dashboard", authenticateUser, (req, res) => {
 
 const Port = "8080";
 
-app.listen(Port, () => {});
+app.listen(Port, () => {
+  console.log(`Listening to PORT No. ${ Port }`);
+});
