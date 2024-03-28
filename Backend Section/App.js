@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 // const bcrypt = require("bcrypt");
 
-const conn = require("./utils/database");
+const conn = require("./config/database");
 const app = express();
 app.use(express.json());
 
